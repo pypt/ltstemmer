@@ -1,0 +1,263 @@
+define step1
+  ( 
+    [ 
+    substring 
+    ] 
+    among 
+      literal 'tis'
+      literal 'tas'
+      ( 
+        <- 't'
+        set PRE
+define step2
+  ( 
+    not 
+      Boolean test PRE
+    [ 
+    substring 
+    ] 
+    among 
+      literal 'uosiuose'
+      literal 'aisiais'
+      literal 'iesiems'
+      literal 'osioms'
+      literal 'jausi'
+      literal 'uosius'
+      literal 'usios'
+      literal 'usius'
+      literal 'amasi'
+      literal 'osios'
+      literal 'osiom'
+      literal 'iomis'
+      literal 'iajam'
+      literal 'ajame'
+      literal 'ianti'
+      literal 'ajam'
+      literal 'asis'
+      literal 'ams'
+      literal 'uoju'
+      literal 'uoji'
+      literal 'uoja'
+      literal 'usis'
+      literal 'omis'
+      literal 'ieji'
+      literal 'ioji'
+      literal 'iaus'
+      literal 'iais'
+      literal 'iant'
+      literal 'anti'
+      literal 'inti'
+      literal 'iuose'
+      literal 'iasi'
+      literal 'iams'
+      literal 'ioje'
+      literal 'iose'
+      literal 'uose'
+      literal 'iems'
+      literal 'mis'
+      literal 'umas'
+      literal 'tsjs'
+      literal 'iame'
+      literal 'toje'
+      literal 'ios'
+      literal 'j/'
+      literal 'j'
+      literal 'is'
+      literal 'oms'
+      literal 'iau'
+      literal 'asi'
+      literal 'ose'
+      literal 'oje'
+      literal 'ojo'
+      literal 'oji'
+      literal 'yse'
+      literal 'yje'
+      literal 'iai'
+      literal 'ias'
+      literal 'ies'
+      literal 'ius'
+      literal 'se'
+      literal 'je'
+      literal 'ers'
+      literal 'ens'
+      literal 'ais'
+      literal 'ams'
+      literal 'aus'
+      literal 'iui'
+      literal 'umu'
+      literal 'ms'
+      literal 'iam'
+      literal 'imo'
+      literal 'yti'
+      literal 'uos'
+      literal 'ant'
+      literal 'osi'
+      literal 'om'
+      literal 'oj'
+      literal 'os'
+      literal 'uo'
+      literal 'us'
+      literal 'ys'
+      literal 'ia'
+      literal 'i'
+      literal 's'
+      literal 'es'
+      literal 'ei'
+      literal 'as'
+      literal 'ai'
+      literal 'ui'
+      literal 'iu'
+      literal 'io'
+      literal 'ks'
+      literal 'ti'
+      literal 's'
+      literal 's'
+      literal 'is'
+      literal 'is'
+      literal 's'
+      literal 'u'
+      literal 'o'
+      literal '/'
+      literal 'i'
+      literal ''
+      literal ''
+      literal 'e'
+      literal ''
+      literal 'a'
+      literal 's'
+      ( 
+        set FOUND
+        delete 
+define step3
+  ( 
+    Boolean test FOUND
+    [ 
+    substring 
+    ] 
+    among 
+      literal ''
+      ( 
+        <- 't'
+        set CHANGE
+      literal 'd~'
+      ( 
+        <- 'd'
+        set CHANGE
+define step4
+  ( 
+    and 
+      or 
+        Boolean test FOUND
+        Boolean test PRE
+      not 
+        Boolean test CHANGE
+    loop 
+    # number 
+      [ 
+    substring 
+    ] 
+    among 
+      literal 'uomen'
+      literal 'inink'
+      literal 'okan'
+      literal 'iaus'
+      literal 'enyb'
+      literal 'ojim'
+      literal 'jim'
+      literal 'imas'
+      literal 'avus'
+      literal 'ulyt'
+      literal 'iuoj'
+      literal 'iant'
+      literal 'iul'
+      literal 'ant'
+      literal 'uos'
+      literal 'uoj'
+      literal 'iuk'
+      literal 'dam'
+      literal 'dav'
+      literal 'auj'
+      literal 'ain'
+      literal 'iak'
+      literal 'eiv'
+      literal 'int'
+      literal 'uol'
+      literal 'tok'
+      literal 'toj'
+      literal 'tas'
+      literal 'iam'
+      literal 'iau'
+      literal 'iav'
+      literal 'atv'
+      literal 'yst'
+      literal 'ien'
+      literal 'ykl'
+      literal 'tuv'
+      literal 'tuk'
+      literal 'ikl'
+      literal 'esn'
+      literal 'ekl'
+      literal 'sen'
+      literal 'tyn'
+      literal 'izm'
+      literal 'jim'
+      literal 't'
+      literal 'ia'
+      literal 'z'
+      literal 'a'
+      literal 'u~'
+      literal 'yt'
+      literal 'el'
+      literal 'av'
+      literal 'uk'
+      literal 'oj'
+      literal 'n'
+      literal 'om'
+      literal 'o'
+      literal 'j'
+      literal 'ij'
+      literal 'iuo'
+      literal 'uo'
+      literal 'um'
+      literal 'yk'
+      literal 's'
+      literal 'in'
+      literal 'kn'
+      literal 'ik'
+      literal 'l'
+      literal 'yb'
+      literal 'sm'
+      literal 'es'
+      literal 'ym'
+      ( 
+        delete 
+define step5
+  ( 
+    Boolean test CHANGE
+    [ 
+    substring 
+    ] 
+    among 
+      literal 'ikkat'
+      literal 'iant'
+      ( 
+        delete 
+define stem
+  ( 
+    unset PRE
+    unset FOUND
+    unset CHANGE
+    backwards 
+      ( 
+        do 
+          call step1
+        do 
+          call step2
+        do 
+          call step3
+        do 
+          call step4
+        do 
+          call step5
+        do 
+          call step3
